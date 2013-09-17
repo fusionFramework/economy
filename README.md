@@ -1,0 +1,4 @@
+economy
+=======
+
+fusionFramework Economy module
