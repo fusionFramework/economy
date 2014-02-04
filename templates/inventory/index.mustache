@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="btn-group pull-right">
+		<a href="{{#uri}}safe.index{{/uri}}" class="btn btn-default">Safe</a>
+		<a href="{{#uri}}shop.index{{/uri}}" class="btn btn-default">Shop</a>
+		<a href="{{#uri}}trades.index{{/uri}}" class="btn btn-default">Trades</a>
+		<a href="{{#uri}}auctions.index{{/uri}}" class="btn btn-default">Auctions</a>
+	</div>
+<p class="pull-left">You have {{total_items}}/{{limit}} items in your inventory.</p>
+</div>
+<div class="row">
+	{{#items}}
+		<div class="col-lg-3" data-item-id="{{id}}" class="item-entity">
+			<p class="text-center">
+				<a href="{{action_link}}" class="item-action">
+					<img src="{{img}}" /> <br />
+					<span class="item-amount">{{amount}}</span> {{name}}
+				</a>
+			</p>
+		</div>
+	{{/items}}
+	{{^items}}
+	<div class="col-lg-12">
+		<p class="text-center text-muted">You have not items in your inventory</p>
+	</div>
+	{{/items}}
+</div>
+<div class="row">
+	<p class="text-center">
+		{{pagination}}
+	</p>
+</div>

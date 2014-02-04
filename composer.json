@@ -1,0 +1,23 @@
+{
+	"name"       :"fusionFramework/economy",
+	"description":"fusionFramework's economy package",
+	"type"       :"fusionFramework",
+	"homepage"   :"https://github.com/fusionFramework/economy",
+	"license"    :"MIT",
+	"authors"    :[
+		{
+			"name"    :"Maxim Kerstens",
+			"email"   :"maxim.kerstens@gmail.com",
+			"role"    :"Project maintainer"
+		}
+	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "http://fusion.happydemon.org/"
+		}
+	],
+	"require": {
+		"fusionFramework/app": "*"
+	}
+}

@@ -1,0 +1,16 @@
+<div class="row">
+	{{#stores}}
+		<div class="col-lg-3" data-store-id="{{id}}" class="store-entity">
+			<p class="text-center">
+				<a href="{{link}}" class="store"> {{name}}<br />
+					<small>(stock: <span class="store-stock">{{stock}}</span>)</small>
+				</a>
+			</p>
+		</div>
+	{{/stores}}
+	{{^stores}}
+	<div class="col-lg-12">
+		<p class="text-center text-muted">There are no stores open</p>
+	</div>
+	{{/stores}}
+</div>

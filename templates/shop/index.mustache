@@ -1,0 +1,38 @@
+<div class="center-block">
+	{{&menu}}
+</div>
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		{{#shop}}
+		<form class="form-horizontal" method="post" action="{{#uri}}shop.update{{/uri}}">
+			<input type="hidden" name="csrf" value="{{csrf}}" />
+			<div class="form-group">
+				<label class="control-label col-lg-3" for="input-title">Title</label>
+				<div class="col-lg-5">
+					<input type="text" id="input-title" class="form-control" name="title" value="{{shop.title}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3" for="input-description">Description</label>
+				<div class="col-lg-5">
+					<textarea name="description" id="input-description" class="form-control" rows="5">{{shop.description}}</textarea>
+				</div>
+			</div>
+		  	{{/shop}}
+		  	{{#units}}
+		  	<div class="form-group">
+		    	<label class="control-label col-lg-3">Shop size</label>
+		    	<div class="col-lg-5">
+		      		<strong>{{size}}</strong> <a href="{{#uri}}shop.upgrade{{/uri}}" class="btn btn-default">Upgrade shop size</a>
+		      		<span class="help-block"><em>Your shop can contain up to {{content}} items.</em></span>
+		    	</div>
+		  	</div>
+		  	{{/units}}
+			<div class="form-group">
+				<div class="col-lg-offset-3">
+					<input type="submit" class="btn btn-primary" value="Update shop">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

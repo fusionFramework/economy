@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="btn-group pull-right">
+		<a href="{{#uri}}inventory.index{{/uri}}" class="btn btn-default">Inventory</a>
+		<a href="{{#uri}}shop.index{{/uri}}" class="btn btn-default">Shop</a>
+		<a href="{{#uri}}trades.index{{/uri}}" class="btn btn-default">Trades</a>
+		<a href="{{#uri}}auctions.index{{/uri}}" class="btn btn-default">Auctions</a>
+	</div>
+	<div class="col-lg-6">
+		{{& pagination}}
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-5 col-lg-offset-4">
+		<form method="post" action="{{#uri}}safe.move{{/uri}}">
+			<input type="hidden" name="csrf" value="{{csrf}}" />
+			<table class="table table-condense table-striped">
+				<thead>
+					<tr>
+						<th class="col-lg-1"></th>
+						<th class="col-lg-3">Name</th>
+						<th class="col-lg-1">#</th>
+						<th class="col-lg-4">Location</th>
+						<th class="col-lg-2">Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#items}}
+					    <tr>
+					        <td><img src="{{img}}" width="40" height="40" /></td>
+					        <td>{{name}}</td>
+					        <td>{{amount}}</td>
+					        <td>
+					            <select class="form-control input-sm" name="items[{{id}}][location]">
+					            {{#options}}
+					                <option value="{{value}}">
+					                    {{name}}
+					                </option>
+					            {{/options}}
+					            </select>
+					        </td>
+					        <td><input type="number" class="form-control input-sm" name="items[{{id}}][amount]" value="0" /></td>
+					    </tr>
+					{{/items}}
+					{{^items}}
+						<tr>
+							<td colspan="5" align="center">You have no items in your safe</td>
+						</tr>
+					{{/items}}
+					<tr>
+						<td colspan="3"></td>
+						<td colspan="2"><input type="submit" class="btn btn-primary pull-right" value="Move" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		{{& pagination}}
+	</div>
+</div>
