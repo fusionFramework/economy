@@ -214,7 +214,7 @@ class Controller_Trades extends Controller_Fusion_Site
 		//remove all bids made to this lot
 		if (count($bids) > 0)
 		{
-			$log = Fusion::$log->create('item.trade.' . $id . '.delete', 'item', 'Trade #id deleted', array(':id' => $id));
+			$log = Fusion::$log->create('trade.' . $id . '.delete', 'item', 'Trade #id deleted', array(':id' => $id));
 
 			foreach ($bids as $bid)
 			{
@@ -230,7 +230,7 @@ class Controller_Trades extends Controller_Fusion_Site
 					$bid->user->points($bid->points);
 				}
 
-				$log->notify($bid->user, 'item.trades.delete', array(':lot' => $id));
+				$log->notify($bid->user, 'trades.delete', array(':lot' => $id));
 
 				$bid->delete();
 			}
@@ -455,12 +455,12 @@ class Controller_Trades extends Controller_Fusion_Site
 					$this->redirect(Route::url('trades.bid', array('id' => $id), true));
 				}
 
-				$log = Fusion::$log->create('item.trade.bid.' . $bid->lot_id, 'items', 'Made a bid with :amount items and :points points', array(
+				$log = Fusion::$log->create('trade.bid.' . $bid->lot_id, 'economy', 'Made a bid with :amount items and :points points', array(
 					':amount' => $a_count, ':points' => (int)$points, 'items' => $item_names));
 
-				$log->notify($bid->lot_user, 'items.trades.bid', array(
-					':user' => Fusion::$user->username,
-					':lot' => '<strong>#<a href="' . Route::url('trades.lot', array('id' => $bid->lot_id)) . '">' . $bid->lot_id . '</a></strong>'
+				$log->notify($bid->lot_user, 'trades.bid', array(
+					':bidder' => Fusion::$user->username,
+					':lot' => $bid->lot_id
 				));
 
 				Database::instance()->commit();
@@ -531,8 +531,8 @@ class Controller_Trades extends Controller_Fusion_Site
 				$item->transfer($bid->user, $item->amount);
 			}
 
-			$log = Fusion::$log->create('item.trade.' . $id . '.accept', 'item', 'Trade #id completed', array(':id' => $id));
-			$log->notify($user, 'items.trades.accept', array(':username' => Fusion::$user->username));
+			$log = Fusion::$log->create('trade.' . $id . '.accept', 'economy', 'Trade #:lot completed', array(':lot' => $id));
+			$log->notify($user, 'trades.accept', array(':username' => Fusion::$user->username));
 
 			RD::success('You\'ve accepted bid #:id made by :username', array(':id' => $bid->id, ':username' => $bid->user->username));
 
@@ -559,8 +559,8 @@ class Controller_Trades extends Controller_Fusion_Site
 						$user->points($bid->points);
 					}
 
-					$log = Fusion::$log->create('item.trade.' . $id . '.reject', 'item', 'Bid from :user declined', array(':user' => Fusion::$user->username));
-					$log->notify($user, 'items.trades.reject', array(':lot' => $id));
+					$log = Fusion::$log->create('trade.' . $id . '.reject', 'economy', 'Bid from :user declined', array(':user' => $user->username));
+					$log->notify($user, 'trades.reject', array(':lot' => $id));
 					$bid->delete();
 				}
 			}
@@ -604,7 +604,7 @@ class Controller_Trades extends Controller_Fusion_Site
 
 			RD::success('You\'ve rejected bid #:id made by :username', array(':id' => $bid->id, ':username' => $user->username));
 
-			$log = Fusion::$log->create('item.trade.' . $id . '.reject', 'item', 'Bid from :user declined', array(':user' => Fusion::$user->username));
+			$log = Fusion::$log->create('trade.' . $id . '.reject', 'economy', 'Bid from :user declined', array(':user' => Fusion::$user->username));
 			$log->notify($user, 'items.trades.reject', array(':lot' => $id));
 			$bid->delete();
 		}
@@ -647,8 +647,8 @@ class Controller_Trades extends Controller_Fusion_Site
 
 			RD::success('You\'ve retracted your bid');
 
-			$log = Fusion::$log->create('item.trade.' . $id . '.retract', 'item', 'Retracted bid for :id', array(':id' => $id));
-			$log->notify($log, $bid->lot->user, 'items.trades.retract', array(':lot' => $id, ':username' => Fusion::$user->username));
+			$log = Fusion::$log->create('trade.' . $id . '.retract', 'economy', 'Retracted bid for :id', array(':lot' => $id));
+			$log->notify($log, $bid->lot->user, 'trades.retract', array(':lot' => $id));
 
 			$bid->delete();
 		}
