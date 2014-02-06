@@ -3,6 +3,7 @@
 			<div class="row text-center">
 				{{&menu}}
 			</div>
+		<br />
 			{{^unable}}
 			<form action="{{#uri}}trades.create.process{{/uri}}" method="post">
 			<input type="hidden" name="csrf" value="{{csrf}}" />

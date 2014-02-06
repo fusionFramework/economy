@@ -1,17 +1,12 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
 return array (
-	'image' => 
-	array (
+	'image' => [
 		'width' => '80',
 		'height' => '80',
-		'formats' =>
-		array(
-			0 => 'png',
-			1 => 'jpg',
-		),
+		'formats' => ['png'],
 		'tmp_dir' => WEBPATH.'m'.DIRECTORY_SEPARATOR.'items'.DIRECTORY_SEPARATOR,
-	),
+	],
 	'inventory' => [
 		'limit' => 50, // The maximum amount of items a user can have in his inventory (false means no limit)
 		'items_per_page' => 25,
@@ -38,21 +33,17 @@ return array (
 			'unit_size' => '10',
 		],
 	],
-	'trade' =>
-		array(
-			'currency_image' => false,
-			'lots' =>
-				array(
-					'max_results' => '25',
-					'max_items' => '10',
-					'count_amount' => true,
-				),
-			'bids' =>
-				array(
-					'max_results' => '20',
-					'max_items' => '10',
-					'count_amount' => true,
-					'max_in_stack' => '10',
-				),
-		),
+	'trade' => [
+		'lots' => [
+			'max_results' => '25',
+			'max_items' => '10',
+			'count_amount' => true,
+		],
+		'bids' => [
+			'max_results' => '20',
+			'max_items' => '10',
+			'count_amount' => true,
+			'max_in_stack' => '10',
+		],
+	],
 );

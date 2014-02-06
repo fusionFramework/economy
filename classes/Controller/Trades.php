@@ -32,7 +32,7 @@ class Controller_Trades extends Controller_Fusion_Site
 		$max_lots = $config['max_results'];
 
 		$lots = ORM::factory('User_Trade')
-			->order_by('id', 'DESC');
+			->order_by('user_trade.id', 'DESC');
 
 		$paginate = Paginate::factory($lots, array('total_items' => $max_lots))->execute();
 
