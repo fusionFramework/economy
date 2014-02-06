@@ -274,7 +274,7 @@ class Controller_Trades extends Controller_Fusion_Site
 			{
 				$bid = ORM::factory('User_Trade_bid')
 					->where('user_id', '=', Fusion::$user->id)
-					->where('lot_id', '=', $lot->id)
+					->where('trade_id', '=', $lot->id)
 					->find();
 
 				if ($bid->loaded())
@@ -313,6 +313,7 @@ class Controller_Trades extends Controller_Fusion_Site
 		else
 		{
 			$this->_tpl->lot = $lot;
+			$this->_tpl->is_owner = (Fusion::$user->id == $lot->user_id);
 			$this->_tpl->items = Item::location('inventory', TRUE)->find_all();
 			$this->_tpl->max_items = Kohana::$config->load('items.trade.bids.max_items') - 1;
 			$this->_tpl->max_type = (Kohana::$config->load('items.trade.bids.count_amount')) ? 'items' : 'stacks';
@@ -330,6 +331,19 @@ class Controller_Trades extends Controller_Fusion_Site
 
 		if ($this->request->method() != HTTP_Request::POST)
 		{
+			$this->redirect(Route::url('trades.bid', array('id' => $id), true));
+		}
+
+		$lot = ORM::factory('User_Trade', $id);
+
+		if(!$lot->loaded())
+		{
+			RD::warning('Seems like the lot you wanted to bid on does not exist.');
+			$this->redirect(Route::url('trades.index', null, true));
+		}
+		else if(Fusion::$user->id == $lot->user_id)
+		{
+			RD::warning('You can\'t make a bid on your own lot!');
 			$this->redirect(Route::url('trades.bid', array('id' => $id), true));
 		}
 
@@ -423,7 +437,7 @@ class Controller_Trades extends Controller_Fusion_Site
 				try
 				{
 					$bid = ORM::factory('User_Trade_bid');
-					$bid->lot_id = $id;
+					$bid->trade_id = $id;
 					$bid->user_id = Fusion::$user->id;
 
 					//deduct points if specified
@@ -455,12 +469,12 @@ class Controller_Trades extends Controller_Fusion_Site
 					$this->redirect(Route::url('trades.bid', array('id' => $id), true));
 				}
 
-				$log = Fusion::$log->create('trade.bid.' . $bid->lot_id, 'economy', 'Made a bid with :amount items and :points points', array(
+				$log = Fusion::$log->create('trade.bid.' . $bid->trade_id, 'economy', 'Made a bid with :amount items and :points points', array(
 					':amount' => $a_count, ':points' => (int)$points, 'items' => $item_names));
 
-				$log->notify($bid->lot_user, 'trades.bid', array(
+				$log->notify($bid->trade->user, 'trades.bid', array(
 					':bidder' => Fusion::$user->username,
-					':lot' => $bid->lot_id
+					':lot' => $bid->trade_id
 				));
 
 				Database::instance()->commit();
@@ -648,7 +662,7 @@ class Controller_Trades extends Controller_Fusion_Site
 			RD::success('You\'ve retracted your bid');
 
 			$log = Fusion::$log->create('trade.' . $id . '.retract', 'economy', 'Retracted bid for :id', array(':lot' => $id));
-			$log->notify($log, $bid->lot->user, 'trades.retract', array(':lot' => $id));
+			$log->notify($log, $bid->trade->user, 'trades.retract', array(':lot' => $id));
 
 			$bid->delete();
 		}

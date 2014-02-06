@@ -32,6 +32,11 @@ class View_Trades_Bid extends Views
 	public $lot = FALSE;
 
 	/**
+	 * @var bool Is the logged in uer the owner of this lot?
+	 */
+	public $is_owner = FALSE;
+
+	/**
 	 * Simplify lot data
 	 */
 	public function lot()
