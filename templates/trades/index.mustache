@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="row text-center">
+			{{&menu}}
+		</div>
+		<div class="row">
+			<div class="pagination-centered">{{& pagination}}</div>
+		</div>
+		{{#lots}}
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<div class="row pagination-centered">
+					<em>&nbsp;- <a href="{{user_profile}}">{{username}}</a></em>
+					<div class="pull-right"><a href="{{bid_link}}" class="btn btn-default btn-sm">Make a bid</a></div>
+					<span class="pull-left"><strong><a href="{{lot_link}}">#{{id}}</a></strong></span>
+				</div>
+				<ul class="media-list">
+					{{#inventory}}
+						<li class="media">
+							<img class="media-object pull-left" src="{{img}}" width="45" heigth="45" />
+							<div class="media-body">
+								{{name}}
+							</div>
+						</li>
+					{{/inventory}}
+				</ul>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2">
+						{{description}}
+					</div>
+				</div>
+				<div class="row text-center"><a href="{{bid_link}}" class="btn btn-default btn-sm">Make a bid</a></div>
+			</div>
+		</div>
+		{{/lots}}
+		<div class="row">
+			<div class="pagination-centered">{{& pagination}}</div>
+		</div>
+	</div>
+</div>

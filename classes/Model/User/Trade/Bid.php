@@ -12,7 +12,7 @@ class Model_User_Trade_Bid extends ORM
 {
 	protected $_table_columns = array(
 		'id' => NULL,
-		'trade_id	' => NULL,
+		'trade_id' => NULL,
 		'user_id' => NULL,
 		'points' => NULL,
 		'created' => NULL

@@ -38,4 +38,21 @@ return array (
 			'unit_size' => '10',
 		],
 	],
+	'trade' =>
+		array(
+			'currency_image' => false,
+			'lots' =>
+				array(
+					'max_results' => '25',
+					'max_items' => '10',
+					'count_amount' => true,
+				),
+			'bids' =>
+				array(
+					'max_results' => '20',
+					'max_items' => '10',
+					'count_amount' => true,
+					'max_in_stack' => '10',
+				),
+		),
 );

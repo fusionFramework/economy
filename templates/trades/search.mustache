@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="row text-center">
+			{{&menu}}
+		</div>
+
+		<div class="row">
+			<br />
+			<div class="pull-right">
+				<form action="" method="post" class="form-inline">
+					<input type="hidden" name="csrf" value="{{csrf}}" />
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search" name="term" value="{{term}}">
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+			</div>
+			{{& pagination}}
+		</div>
+		{{#term}}
+			<div class="row">
+				<p>We have found {{count_results}} result(s) for "<i>{{term}}</i>"</p>
+			</div>
+			{{#lots}}
+			<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+			<div class="row">
+				<em>&nbsp;- <a href="{{user_profile}}">{{username}}</a></em>
+				<div class="pull-right"><a href="{{bid_link}}" class="btn btn-default btn-xs">Bid</a></div>
+				<span class="pull-left"><strong><a href="{{lot_link}}">#{{id}}</a></strong></span>
+			</div>
+				<div class="row">
+					<ul class="media-list col-lg-offset-2">
+						{{#inventory}}
+						<li class="media">
+							<div class="pull-left">
+								<img src="{{img}}" class="media-object" width="45" heigth="45" />
+							</div>
+							<div class="media-body col-lg-8">
+								{{name}}
+							</div>
+						</li>
+						{{/inventory}}
+					</ul>
+				</div>
+			<div class="row">
+				<div class="col-lg-offset-1">
+					{{description}}
+				</div>
+			</div>
+			<div class="row text-center"><a href="{{bid_link}}" class="btn btn-default btn-sm">Bid</a></div>
+			</div>
+			{{/lots}}
+		{{/term}}
+			<div class="row">
+				<div class="text-center">{{& pagination}}</div>
+			</div>
+		</div>
+	</div>
+</div>

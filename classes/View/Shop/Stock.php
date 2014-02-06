@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Shop_Stock extends Views {
+/**
+ * User shop stock view data
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Shop_Stock extends Views
+{
 
 	public $title = 'Shop';
 

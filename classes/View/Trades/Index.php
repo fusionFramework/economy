@@ -1,6 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Trades_Index extends Views {
+/**
+ * Trade index view data
+ *
+ * View active lots
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Trades_Index extends Views
+{
 
 	public $title = 'Trade lots';
 
@@ -51,7 +62,7 @@ class View_Trades_Index extends Views {
 					'description'  => $lot->description,
 					'inventory'    => $inventory,
 					'username'     => $lot->user->username,
-					'user_profile' => Route::url('user.profile', array('id' => $lot->user_id))
+					'user_profile' => Route::url('user.profile', array('name' => $lot->user->username))
 				);
 			}
 		}

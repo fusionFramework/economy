@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Trades_Bid extends Views {
+/**
+ * Trade bid view data
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Trades_Bid extends Views
+{
 
 	public $title = 'Trade lots';
 
@@ -43,7 +52,7 @@ class View_Trades_Bid extends Views {
 				'id'          => $this->lot->id,
 				'url'         => Route::url('trades.lot', array('id' => $this->lot->id)),
 				'username'    => $this->lot->user->username,
-				'profile'     => Route::url('user.profile', array('id' => $this->lot->user->id)),
+				'profile'     => Route::url('user.profile', array('name' => $this->lot->user->username)),
 				'inventory'   => $items,
 				'description' => $this->lot->description
 			);

@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+			<div class="row text-center">
+				{{&menu}}
+			</div>
+			<div class="row">
+				<div class="text-center">{{& pagination}}</div>
+			</div>
+			{{#lots}}
+			<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+			<div class="row">
+				<span class="pull-left"><strong>#<a href="{{lot_link}}">{{id}}</a></strong></span>
+			</div>
+				<div class="row">
+					<ul class="media-list col-lg-offset-2">
+						{{#inventory}}
+						<li class="media">
+							<div class="pull-left">
+								<img src="{{img}}" class="media-object" width="45" heigth="45" />
+							</div>
+							<div class="media-body col-lg-8">
+								{{name}}
+							</div>
+						</li>
+						{{/inventory}}
+					</ul>
+				</div>
+			<div class="row">{{description}}</div>
+			<div class="row text-center"><a href="{{lot_link}}">Bids</a></div>
+			</div>
+			{{/lots}}
+			<div class="row">
+				<div class="text-center">{{& pagination}}</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3">
+			<div class="row text-center">
+				{{&menu}}
+			</div>
+			{{^unable}}
+			<form action="{{#uri}}trades.create.process{{/uri}}" method="post">
+			<input type="hidden" name="csrf" value="{{csrf}}" />
+			<div class="row text-muted">
+				You can selected up to {{max_items}} {{max_type}}
+			</div>
+			<div class="row">
+				<ul class="media-list col-lg-offset-3">
+					{{#items}}
+						<li class="media">
+							<div class="pull-left">
+								<img src="{{img}}" class="media-object" width="45" heigth="45" />
+							</div>
+							<div class="media-body col-lg-7">
+								{{name}}
+								<div class="col-lg-5 pull-right">
+									<input class="input-sm form-control" type="number" name="items[{{id}}]" value="0" />
+								</div>
+							</div>
+					  	</li>
+					{{/items}}
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-lg-2 col-lg-offset-3">Description<br /><p><small class="text-muted">max 144 characters</small></p></div>
+				<div class="col-lg-4">
+					<textarea name="description" rows="3" class="form-control"></textarea><br />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-offset-5"><input type="submit" class="btn btn-primary" value="Create lot" /></div>
+			</div>
+			</form>
+		{{/unable}}
+	</div>
+</div>

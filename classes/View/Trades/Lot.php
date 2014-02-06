@@ -1,6 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Trades_Lot extends Views {
+/**
+ * Trade Lot view data
+ *
+ * View a lot
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Trades_Lot extends Views
+{
 
 	public $title = 'Trade lots';
 
@@ -59,7 +70,7 @@ class View_Trades_Lot extends Views {
 			'description'  => $this->lot->description,
 			'inventory'    => $inventory,
 			'username'     => $this->lot->user->username,
-			'user_profile' => Route::url('user.profile', array('id' => $this->lot->user_id)),
+			'user_profile' => Route::url('user.profile', array('name' => $this->lot->user->username)),
 			'delete_trade' => ($this->owner_actions) ? Route::url('trades.delete', array('id' => $this->lot->id)) : FALSE
 		);
 
@@ -93,7 +104,7 @@ class View_Trades_Lot extends Views {
 				'id'        => $bid->id,
 				'points'    => ($bid->points > 0) ? array('amount' => $bid->points) : FALSE,
 				'username'  => $bid->user->username,
-				'profile'   => Route::url('user.profile', array('id' => $bid->user_id)),
+				'profile'   => Route::url('user.profile', array('name' => $bid->user->username)),
 				'inventory' => $items,
 				'accept'    => Route::url('trades.accept', array('id' => $bid->id)),
 				'reject'    => Route::url('trades.reject', array('id' => $bid->id)),

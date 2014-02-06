@@ -1,6 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Trades_Search extends Views {
+/**
+ * Trade search view data
+ *
+ * Search lots for an item
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Trades_Search extends Views
+{
 
 	public $title = 'Trade lots';
 
@@ -38,7 +49,7 @@ class View_Trades_Search extends Views {
 
 		if (count($this->items) > 0)
 		{
-			foreach ($this->$items as $item)
+			foreach ($this->items as $item)
 			{
 				$lot = ORM::factory('User_Trade', $item->parameter_id);
 
@@ -59,7 +70,7 @@ class View_Trades_Search extends Views {
 					'description'  => $lot->description,
 					'inventory'    => $inventory,
 					'username'     => $lot->user->username,
-					'user_profile' => Route::url('user.profile', array('id' => $lot->user_id))
+					'user_profile' => Route::url('user.profile', array('name' => $lot->user->username))
 				);
 			}
 		}

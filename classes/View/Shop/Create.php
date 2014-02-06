@@ -1,6 +1,15 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Shop_Create extends Views {
+/**
+ * User shop create view data
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Shop_Create extends Views
+{
 
 	public $title = 'Shop';
 

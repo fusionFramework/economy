@@ -1,6 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Inventory_View extends Views {
+/**
+ * Inventory item view data
+ *
+ * View a specific item and possible actions.
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Inventory_View extends Views
+{
 	/**
 	 * Store the item's information
 	 * @var User_Item

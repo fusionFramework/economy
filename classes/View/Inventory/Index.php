@@ -1,6 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class View_Inventory_Index extends Views {
+/**
+ * Inventory list view data
+ *
+ * View all items in inventory
+ *
+ * @package    fusionFramework/economy
+ * @category   View
+ * @author     Maxim Kerstens
+ * @copyright  (c) Maxim Kerstens
+ */
+class View_Inventory_Index extends Views
+{
 	public $title = 'Inventory';
 
 	/**

@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="row text-center">
+			{{&menu}}
+		</div>
+		<div class="row text-center">
+			You have made {{count}} bids
+		</div>
+		<div class="row">
+			{{#bids}}
+				<div class="row">
+					Bid made to lot <strong><a href="{{lot}}"># {{lot_id}}</a></strong> by <em><a href="{{profile}}">{{username}}</a></em>
+					<span class="pull-right">
+						<a href="{{retract}}" class="btn btn-warning btn-xs">Cancel bid</a>
+					</span>
+				</div>
+				<div class="row">
+					<ul class="media-list col-lg-offset-2">
+						{{#inventory}}
+						<li class="media">
+							<div class="pull-left">
+								<img src="{{img}}" class="media-object" width="45" heigth="45" />
+							</div>
+							<div class="media-body col-lg-8">
+								{{name}}
+							</div>
+						</li>
+						{{/inventory}}
+
+					{{#points}}
+						<li class="media">
+							<div class="pull-left">
+								{{#currency_image}}
+								<img class="media-object" src="{{.}}" />
+								{{/currency_image}}
+							</div>
+							<div class="media-body col-lg-8">
+								{{amount}} {{currency}}
+							</div>
+						</li>
+					{{/points}}
+					</ul>
+				</div>
+			{{/bids}}
+		</div>
+	</div>
+</div>

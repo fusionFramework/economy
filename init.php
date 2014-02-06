@@ -114,13 +114,73 @@ Route::set('shop.view', 'shop/<id>', array('id' => '[0-9]+'))
 	));
 
 //  Trades
-Route::set('trades.index', 'trades')
+Route::set('trades.create', 'trades/create')
 	->defaults(array(
-			'controller' => 'Safe',
-			'action'     => 'index',
-			'page'       => 1
-		)
-	);
+		'controller' => 'Trades',
+		'action'     => 'create',
+	));
+Route::set('trades.create.process', 'trades/create/process')
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'process_create',
+	));
+Route::set('trades.lots', 'trades/lots')
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'lots',
+	));
+Route::set('trades.lot', 'trades/lot/<id>', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'lot',
+	));
+Route::set('trades.delete', 'trades/lot/<id>/delete', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'delete',
+	));
+Route::set('trades.bid', 'trades/lot/<id>/bid', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'bid',
+	));
+Route::set('trades.bid.process', 'trades/lot/<id>/process', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'process_bid',
+	));
+Route::set('trades.bids', 'trades/bids')
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'bids',
+	));
+Route::set('trades.bids.accept', 'trades/bid/<id>/accept', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'accept',
+	));
+Route::set('trades.bids.reject', 'trades/bid/<id>/reject', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'reject',
+	));
+Route::set('trades.bids.retract', 'trades/bid/<id>/retract', array('id' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'retract',
+	));
+Route::set('trades.search', 'trades/search(/<term>(/<page>))', array('page' => '[0-9]+', 'term' => '([-a-zA-Z ]+)'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'search',
+		'page'       => 1
+	));
+Route::set('trades.index', 'trades(/<page>)', array('page' => '[0-9]+'))
+	->defaults(array(
+		'controller' => 'Trades',
+		'action'     => 'index',
+		'page'       => 1
+	));
 
 //  Auctions
 Route::set('auctions.index', 'auctions')
