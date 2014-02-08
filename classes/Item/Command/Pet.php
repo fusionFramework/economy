@@ -8,7 +8,6 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-abstract class Item_Command_Pet extends Item_Command {
+abstract class Item_Command_Pet extends Fusion_Item_Command_Pet {
 
-	public $load_pets = TRUE;
 }

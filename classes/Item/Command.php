@@ -9,7 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-abstract class Item_Command {
+abstract class Item_Command extends Fusion_Item_Command {
 
 	/**
 	 * Spew out a command

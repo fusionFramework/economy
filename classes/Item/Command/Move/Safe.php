@@ -9,30 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Command_Move_Safe extends Item_Command_Move {
-
-	protected function _build($name)
-	{
-		return NULL;
-	}
-
-	public function validate($param)
-	{
-		return NULL;
-	}
-
-	public function perform($item, $amount, $data = null)
-	{
-		$name = $item->item->name($amount);
-
-		if (!$item->move('safe', $amount))
-		{
-			return Item_Result::factory('You can\'t move ' . $name . ' to your safe.', 'error');
-		}
-		else
-		{
-			return Item_Result::factory('You have successfully moved ' . $name . ' to your safe.');
-		}
-	}
+class Item_Command_Move_Safe extends Fusion_Item_Command_Move_Safe
+{
 
 }

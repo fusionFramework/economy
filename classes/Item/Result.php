@@ -9,18 +9,6 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Result {
-	static public function factory($msg, $status = 'success')
-	{
-		$result = new Item_Result;
+class Item_Result extends Fusion_Item_Result {
 
-		$result->status = $status;
-		$result->text = $msg;
-
-		return $result;
-	}
-
-	public $status = null;
-
-	public $text = null;
 }

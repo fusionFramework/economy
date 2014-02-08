@@ -9,22 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Command_General_Remove extends Item_Command {
+class Item_Command_General_Remove extends Fusion_Item_Command_General_Remove
+{
 
-	public $default = TRUE;
-
-	protected function _build($name)
-	{
-		return NULL;
-	}
-
-	public function validate($param)
-	{
-		return NULL;
-	}
-
-	public function perform($item, $amount, $data = null)
-	{
-		return NULL;
-	}
 }

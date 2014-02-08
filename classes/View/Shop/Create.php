@@ -8,16 +8,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) Maxim Kerstens
  */
-class View_Shop_Create extends Views
+class View_Shop_Create extends Fusion_View_Shop_Create
 {
 
-	public $title = 'Shop';
-
-	/**
-	 * Contains 2 keys:
-	 * - cost (integer)
-	 * - affordable (bool) whether the user can afford it to create a shop
-	 * @var array
-	 */
-	public $creation = FALSE;
 }

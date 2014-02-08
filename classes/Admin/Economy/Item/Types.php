@@ -8,7 +8,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Admin_Economy_Item_Types extends Admin
+class Admin_Economy_Item_Types extends Fusion_Admin_Economy_Item_Types
 {
 	public  $resource = "item.types";
 	public $icon = 'fa fa-lemon-o';

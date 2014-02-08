@@ -9,47 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Command_Pet_Feed extends Item_Command_Pet {
+class Item_Command_Pet_Feed extends Fuion_Item_Command_Pet_Feed
+{
 
-	protected function _build($name)
-	{
-		return array(
-			'title' => 'Pet hunger',
-			'fields' => array(
-				array(
-						'name' => $name, 'class' => 'input-mini'
-					)
-			)
-		);
-	}
-
-	public function validate($param)
-	{
-		return (Valid::digit($param) AND $param > 0);
-	}
-
-	public function perform($item, $param, $pet = null)
-	{
-		if ($pet->hunger == 100)
-		{
-			return Item_Result::factory($pet->name . ' is already full', 'error');
-		}
-		else
-		{
-			$level = $pet->hunger + $param;
-
-			if ($level > 100)
-			{
-				$pet->hunger = 100;
-			}
-			else
-			{
-				$pet->hunger = $level;
-			}
-
-			$pet->save();
-
-			return Item_Result::factory($pet->name . ' has been fed ' . $item->name);
-		}
-	}
 }
