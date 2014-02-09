@@ -33,7 +33,7 @@ class Fusion_Controller_Trades extends Controller_Fusion_Site
 		$lots = ORM::factory('User_Trade')
 			->order_by('user_trade.id', 'DESC');
 
-		$paginate = Paginate::factory($lots, array('total_items' => $config['pagination']))->execute();
+		$paginate = Paginate::factory($lots, $config['pagination'])->execute();
 
 		$this->_tpl = new View_Trades_Index;
 		$this->_tpl->pagination = $paginate->render();
@@ -50,7 +50,7 @@ class Fusion_Controller_Trades extends Controller_Fusion_Site
 		$lots = ORM::factory('User_Trade')
 			->where('user_id', '=', Fusion::$user->id);
 
-		$paginate = Paginate::factory($lots, array('total_items' => $config['pagination']))->execute();
+		$paginate = Paginate::factory($lots, $config['pagination'])->execute();
 
 		$this->_tpl = new View_Trades_Lots;
 		$this->_tpl->pagination = $paginate->render();

@@ -10,5 +10,5 @@
  */
 class Model_User_Item extends Fusion_Model_User_Item
 {
-	
+
 } // End User_Item Model

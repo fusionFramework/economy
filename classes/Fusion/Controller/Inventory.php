@@ -94,7 +94,7 @@ class Fusion_Controller_Inventory extends Controller_Fusion_Site {
 				->find();
 
 			// Let's see if there's room for an extra item stack in the user shopif the user has one
-			if ($user_shop->loaded() && $user_shop->inventory_space() == TRUE)
+			if ($user_shop->loaded() && $user_shop->space_left() == TRUE)
 			{
 				$actions['move_shop'] = [
 					'item'  => 'Move to your shop',

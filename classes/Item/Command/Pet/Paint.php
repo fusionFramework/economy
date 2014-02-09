@@ -9,7 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Command_Pet_Paint extends Fuion_Item_Command_Pet_Paint
+class Item_Command_Pet_Paint extends Fusion_Item_Command_Pet_Paint
 {
 
 }

@@ -9,7 +9,7 @@
  * @author     Maxim Kerstens
  * @copyright  (c) happydemon.org
  */
-class Item_Command_Pet_Feed extends Fuion_Item_Command_Pet_Feed
+class Item_Command_Pet_Feed extends Fusion_Item_Command_Pet_Feed
 {
 
 }

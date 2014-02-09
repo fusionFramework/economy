@@ -10,5 +10,5 @@
  */
 class Model_User_Trade_Bid extends Fusion_Model_User_Trade_Bid
 {
-	
+
 } // End User_Trade Model

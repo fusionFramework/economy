@@ -10,5 +10,5 @@
  */
 class Model_Item_Type extends Fusion_Model_Item_Type
 {
-	
+
 } // End Item Type Model
