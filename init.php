@@ -183,10 +183,57 @@ Route::set('trades.index', 'trades(/<page>)', array('page' => '[0-9]+'))
 	));
 
 //  Auctions
-Route::set('auctions.index', 'auctions')
-	->defaults(array(
-			'controller' => 'Safe',
-			'action'     => 'index',
-			'page'       => 1
-		)
-	);
+if(Kohana::$config->load('auctions')->get('enabled', FALSE) != FALSE)
+{
+	Route::set('auctions.bids', 'auctions/bids')
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'bids'
+			)
+		);
+	Route::set('auctions.list', 'auctions/list')
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'list'
+			)
+		);
+	Route::set('auctions.index', 'auctions/create/process')
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'create_process'
+			)
+		);
+	Route::set('auctions.create', 'auctions/create')
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'create'
+			)
+		);
+	Route::set('auctions.search', 'auctions/search(/<page>)', array('page' => '[0-9]+'))
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'search',
+				'page'       => 1
+			)
+		);
+	Route::set('auctions.view', 'auctions/view/<id>', array('id' => '[0-9]+'))
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'view'
+			)
+		);
+	Route::set('auctions.bid', 'auctions/bid/<auction_id>', array('auction_id' => '[0-9]+'))
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'bid'
+			)
+		);
+	Route::set('auctions.index', 'auctions(/<page>)', array('page' => '[0-9]+'))
+		->defaults(array(
+				'controller' => 'Auctions',
+				'action'     => 'index',
+				'page'       => 1
+			)
+		);
+}
+

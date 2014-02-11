@@ -58,6 +58,16 @@ class Fusion_Model_User_Item extends ORM
 	}
 
 	/**
+	 * Return the item's name prefixed with its amount
+	 *
+	 * @return string
+	 */
+	public function name()
+	{
+		return $this->item->name($this->amount);
+	}
+
+	/**
 	 * Move the currently initialised item to a new location and update its quantity.
 	 *
 	 * Returns false if you're trying to move a higher amount of this item than you already have,
@@ -66,29 +76,18 @@ class Fusion_Model_User_Item extends ORM
 	 * @param string  $location     Location to send the item to
 	 * @param integer $amount       How many are moving to $location
 	 * @param boolean $single_stack Add to an existing stack or always create a new stack
+	 * @param integer $parameter_id Value for user it's parameter_id
 	 *
 	 * @return boolean|Model_User_Item
 	 */
-	public function move($location, $amount = 1, $single_stack = TRUE)
+	public function move($location, $amount = 1, $single_stack = TRUE, $parameter_id = NULL)
 	{
 		if ($amount == '*')
 		{
 			$amount = $this->amount;
 		}
 
-		return $this->_relocate($this->user_id, $location, $amount, $single_stack);
-	}
-
-	/**
-	 * Return the item's name prefixed with its amount
-	 *
-	 * @return string
-	 */
-	public function name()
-	{
-		$name = ($this->amount > 1) ? Inflector::plural($this->item->name, $this->amount) : $this->item->name;
-
-		return $this->amount . ' ' . $name;
+		return $this->_relocate($this->user_id, $location, $amount, $single_stack, $parameter_id);
 	}
 
 	/**
@@ -129,7 +128,7 @@ class Fusion_Model_User_Item extends ORM
 	 *
 	 * @return boolean|Model_User_Item
 	 */
-	protected function _relocate($user_id, $location, $amount, $single_stack = true)
+	protected function _relocate($user_id, $location, $amount, $single_stack = true, $parameter_id = NULL)
 	{
 		if ($amount > $this->amount)
 		{
@@ -159,6 +158,12 @@ class Fusion_Model_User_Item extends ORM
 			$item->item_id = $this->item_id;
 			$item->location = $location;
 			$item->amount = $amount;
+
+			if($parameter_id != null)
+			{
+				$item->parameter_id = $parameter_id;
+			}
+
 			$item->save();
 		}
 

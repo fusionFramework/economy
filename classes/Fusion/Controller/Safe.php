@@ -20,7 +20,7 @@ class Fusion_Controller_Safe extends Controller_Fusion_Site {
 
 		$items = Item::location('safe');
 
-		$paginate = Paginate::factory($items, $config['pagination'], $this->request)->execute();
+		$paginate = Paginate::factory($items, $config['pagination'])->execute();
 
 		$this->_tpl->pagination = $paginate->render();
 		$this->_tpl->items = $paginate->result();

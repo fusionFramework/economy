@@ -10,7 +10,9 @@ This argument is either the item's id (in this case Model_Item will look for an 
 $helper = Item::factory(1);
 
 // Load the item through a Model_Item instance
-$item = ORM::Factory('Item')->where('name', '=', 'Apple')->find();
+$item = ORM::Factory('Item')
+	->where('name', '=', 'Apple')
+	->find();
 $helper = Item::factory($item);
 ~~~
 
@@ -126,7 +128,7 @@ else
 }
 ~~~
 
-No let's check if he has 3 copies in his safe, this time we'll also check for exceptions:
+Now let's check if he has 3 copies in his safe, this time we'll also check for exceptions:
 
 ~~~
 try {
@@ -150,6 +152,84 @@ catch(Item_Exception_User $e)
 {
 	// In this case it would only be fired if no user is logged in
 	RD::error('No one seems to be logged in!');
+}
+~~~
+
+## How check if the user has several items at once
+
+This static helper method tries to retrieve a set of items based on the provide item's id.
+
+It does not guarantee that he user has all of them, it will return an array for you to loop over and check yourself,
+it just simplifies finding them.
+
+It will return an array, if an item was found it will be added to the array
+(the key will be the same as the item's id, the value will be a loaded `Model_User_Item` instance).
+
+### Parameters
+
+|Parameter    |Description                                                    |
+|-------------|---------------------------------------------------------------|
+|$item_ids    |An array with item's id                                        |
+|$location    |Where are should the item be located? (defaults to inventory)  |
+|$user        |Which user to load the items from (defaults to logged in user) |
+
+### Exceptions
+
+|Class thrown           |Description                                                   |
+|-----------------------|--------------------------------------------------------------|
+|Item_Exception_User    | When no user can be loaded                                   |
+|Item_Exception         | A catch-all exception if you just want to catch 1 exception) |
+
+### Examples
+
+Let's say we want to check if the loged in user has 3 items in his inventory, these item's id are 1, 5 and 12:
+
+~~~
+$items = Item::retrieve([1,5,12]);
+
+// let's see if they're found seperately:
+
+if(array_key_exists(1, $items))
+{
+	//item with id 1 was found
+}
+if(array_key_exists(5, $items))
+{
+	//item with id 5 was found
+}
+if(array_key_exists(1, $items))
+{
+	//item with id 12 was found
+}
+~~~
+
+Now let's do it properly and check for errors
+~~~
+try {
+	$item_ids = [1,5,12];
+	$items = Item::retrieve($item_ids);
+
+	if(count($items) == count($item_ids)
+	{
+		// All items were found
+	}
+	// Some were found
+	else if(count($items) > 0)
+	{
+		// echo the name of the items that were found
+		foreach($items as $id => $item)
+		{
+			echo $item->item->name . ' was found';
+		}
+	}
+	else
+	{
+		// No matching items were found in the user's inventory
+	}
+}
+catch(Item_Exception_User $e)
+{
+	// User wasn't loaded
 }
 ~~~
 
