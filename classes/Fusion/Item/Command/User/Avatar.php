@@ -19,7 +19,6 @@ class Fusion_Item_Command_User_Avatar extends Item_Command {
 			'fields' => array(
 				array(
 						'name' => $name, 'class' => 'input-sm search'
-
 				)
 			)
 		);

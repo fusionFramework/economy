@@ -92,7 +92,7 @@ class Fusion_Item {
 	 * @param boolean            $ignore_limit  Ignore inventory limit? (useful for game rewards)
 	 * @throws Item_Exception
 	 */
-	public function to_user($user=null, $origin = "app", $amount = 1, $location = 'inventory', $ignore_limit=false)
+	public function to_user($user=null, $origin = "app", $amount = 1, $extra_param=[], $location = 'inventory', $ignore_limit=false)
 	{
 		if (!Valid::digit($amount))
 		{
@@ -177,11 +177,13 @@ class Fusion_Item {
 				Throw new Item_Exception_Amount('You can\'t take away items with Item::to_user()');
 			}
 
-			return Fusion::$log->create('item.in.' . $origin, 'item', 'Player received :amount :item_name @ :origin', array(
-				':amount' => $amount,
-				':item_name' => $user_item->item->name,
-				':origin' => str_replace('.', ' ', $origin)
-			));
+            $param = array(
+                ':amount' => $amount,
+                ':item_name' => $user_item->item->name,
+                ':origin' => str_replace('.', ' ', $origin)
+            ) + $extra_param;
+
+			return Fusion::$log->create('item.in.' . $origin, 'item', 'Player received :amount :item_name @ :origin', $param);
 
 		}
 	}

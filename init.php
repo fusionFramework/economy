@@ -197,7 +197,7 @@ if(Kohana::$config->load('auctions')->get('enabled', FALSE) != FALSE)
 				'action'     => 'list'
 			)
 		);
-	Route::set('auctions.index', 'auctions/create/process')
+	Route::set('auctions.create.process', 'auctions/create/process')
 		->defaults(array(
 				'controller' => 'Auctions',
 				'action'     => 'create_process'
@@ -209,7 +209,7 @@ if(Kohana::$config->load('auctions')->get('enabled', FALSE) != FALSE)
 				'action'     => 'create'
 			)
 		);
-	Route::set('auctions.search', 'auctions/search(/<page>)', array('page' => '[0-9]+'))
+	Route::set('auctions.search', 'auctions/search(/<term>(/<page>))', array('page' => '[0-9]+', 'term' => '([-a-zA-Z ]+)'))
 		->defaults(array(
 				'controller' => 'Auctions',
 				'action'     => 'search',

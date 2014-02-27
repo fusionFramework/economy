@@ -1,7 +1,9 @@
 ## [Economy]()
 - [Configuration](config)
-- Items
+- [Items](items/model)
   - [Helper](items/helper)
   - [Commands](items/commands)
   - [User items](items/user)
+- [NPCs](npc/use)
+  - [Definition](npc/define)
 - [Notifications](notifications)

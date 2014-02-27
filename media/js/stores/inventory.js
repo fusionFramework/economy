@@ -11,11 +11,8 @@ $(document).ready(function () {
 				if(result == true)
 				{
 					$(this).on('req.success', function(e, resp){
-						$('#notify-container').notify({
-							message:{ text: resp[0].value},
-							type:'success',
-							fadeOut:{ enabled:true, delay:6000 }
-						}).show();
+
+                        $.growl({message: resp[0].value, icon: 'fa fa-dollar', title: 'Sale'}, {type: 'success'});
 
 						//update the item's stock count
 						if(resp[0].data.stock > 0)
@@ -26,14 +23,6 @@ $(document).ready(function () {
 						{
 							parent.fadeOut();
 						}
-
-					})
-					.on('req.error', function(e, error){
-							$('#notify-container').notify({
-								message:{ text: error[0].value},
-								type:'warning',
-								fadeOut:{ enabled:true, delay:6000 }
-							}).show();
 					})
 					.req({url: link, type: 'GET'});
 				}

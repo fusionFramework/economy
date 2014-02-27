@@ -13,6 +13,7 @@ class Admin_Economy_Item_Types extends Fusion_Admin_Economy_Item_Types
 	public  $resource = "item.types";
 	public $icon = 'fa fa-lemon-o';
 	public $track_changes = TRUE;
+    public $menu = 'items';
 
 	/**
 	 * Set up the dataTable definition for this controller.

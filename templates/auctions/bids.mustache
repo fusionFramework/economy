@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="row text-center">
+			{{&menu}}
+		</div>
+		<br />
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <table class="table table-hover table-striped ">
+                    <thead>
+                    <tr>
+                        <th class="col-lg-2"></th>
+                        <th class="col-lg-4">Item</th>
+                        <th class="col-lg-3">Owner</th>
+                        <th class="col-lg-3">Bid</th>
+                    </tr>
+                    </thead>
+                    {{#bids}}
+                        <tr data-id="{{id}}" class="auction">
+                            <td>
+                                <a href="{{lot_link}}"><img src="{{item.img}}" width="40" height="40" /></a>
+                            </td>
+                            <td><a href="{{lot_link}}">{{item.name}}</a></td>
+                            <td><a href="{{user_profile}}">{{username}}</a></td>
+                            <td>{{points}}</td>
+                        </tr>
+                    {{/bids}}
+                    {{^bids}}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">You haven't made any bids</td>
+                        </tr>
+                    {{/bids}}
+                </table>
+            </div>
+
+        </div>
+	</div>
+</div>

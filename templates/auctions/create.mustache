@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="row text-center">
+            {{&menu}}
+        </div>
+        <br/>
+        {{^unable}}
+            <form action="{{#uri}}auctions.create.process{{/uri}}" method="post" class="form form-horizontal">
+                <input type="hidden" name="csrf" value="{{csrf}}"/>
+
+                <div class="row">
+                    {{#items}}
+                        <div class="col-lg-3">
+                            <p class="text-center">
+                                <img src="{{img}}"/> <br/>
+                                {{name}}
+                                <div class="radio col-lg-offset-5">
+                                    <input type="radio" name="item_id" value="{{id}}"/>
+                                </div>
+                            </p>
+                        </div>
+                    {{/items}}
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">Min. bid</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" id="min-bid" name="start_bid" value="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">Min. increment</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" name="min_increment" value="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">Auto buy</label>
+                        <div class="col-lg-4">
+                            <input type="number" class="form-control" name="auto_buy" value="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-3">Length</label>
+                        <div class="col-lg-4">
+                            <select class="form-control" name="until">
+                                {{#until}}
+                                    <option value="{{key}}">{{value}}</option>
+                                {{/until}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-3">
+                        <input type="submit" class="btn btn-primary" value="Create auction"/>
+                    </div>
+                </div>
+            </form>
+        {{/unable}}
+    </div>
+</div>

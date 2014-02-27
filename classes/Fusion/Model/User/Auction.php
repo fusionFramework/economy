@@ -51,4 +51,9 @@ class Fusion_Model_User_Auction extends ORM
 		);
 	}
 
+	public function complete($auto_buy, $points, Model_User $user=null)
+	{
+
+	}
+
 } // End User_Auction Model

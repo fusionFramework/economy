@@ -1,32 +1,32 @@
 <?php defined('SYSPATH' OR die('No direct access allowed.'));
 /**
- * Trades navigation menu
+ * Auctions navigation menu
  */
 return [
 	'active_item_class' => 'disabled',
 	'items'             => [
 		[
-			'route'   => 'trades.index',
-			'title'   => 'List',
+			'route'   => 'auctions.index',
+			'title'   => 'All auctions',
 			'classes'   => ['btn', 'btn-default']
 		],
 		[
-			'route'   => 'trades.lots',
-			'title'   => 'Your lots',
+			'route'   => 'auctions.list',
+			'title'   => 'Your auctions',
 			'classes'   => ['btn', 'btn-default']
 		],
 		[
-			'route'   => 'trades.bids',
+			'route'   => 'auctions.bids',
 			'title'   => 'Your bids',
 			'classes'   => ['btn', 'btn-default']
 		],
 		[
-			'route'   => 'trades.create',
-			'title'   => 'Create a trade',
+			'route'   => 'auctions.create',
+			'title'   => 'Create an auction',
 			'classes'   => ['btn', 'btn-default']
 		],
 		[
-			'route'   => 'trades.search',
+			'route'   => 'auctions.search',
 			'title'   => 'Search',
 			'classes'   => ['btn', 'btn-info']
 		],

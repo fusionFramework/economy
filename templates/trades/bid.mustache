@@ -8,6 +8,12 @@
 </div>
 <div class="row">
 	<div class="col-lg-6 col-lg-offset-3">
+		{{#is_owner}}
+			<div class="row text-center text-warning">
+				You own this lot, you don't need to bid on it.
+			</div>
+		{{/is_owner}}
+		{{^is_owner}}
 		{{^unable}}
 		{{#lot}}
 		<div class="row">
@@ -69,5 +75,11 @@
 		</div>
 	</form>
 	{{/unable}}
+		{{#unable}}
+			<div class="row text-center text-error">
+				You don't have any items to make a bid with.
+			</div>
+		{{/unable}}
+		{{/is_owner}}
 </div>
 </div>

@@ -3,6 +3,7 @@
 return [
 	'enabled' => TRUE,
 	'list' => [
+        'length' => '30 days', // how far the user can look back in its created auctions
 		'pagination' => [
 			'total_items' => 20
 		]

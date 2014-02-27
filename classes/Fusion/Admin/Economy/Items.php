@@ -14,6 +14,7 @@ class Fusion_Admin_Economy_Items extends Admin
 	public $icon = 'fa fa-lemon-o';
 	public $primary_key = 'item.id';
 	public $track_changes = TRUE;
+    public $menu = 'items';
 
 	/**
 	 * Set up the dataTable definition for this controller.

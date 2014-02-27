@@ -5,11 +5,14 @@
 	<div class="col-lg-8 col-lg-offset-2">
 		<p class="text-center">
 			<div class="pull-right col-lg-4">
-				<form action="{{#uri}}shop.collect{{/uri}}" class="form-inline" method="POST">
-					<div class="form-group col-lg-8">
-						<input type="text" class="form-control col-lg-2" name="amount" placeholder="collect" />
+				<form action="{{#uri}}shop.collect{{/uri}}" method="POST">
+					<input type="hidden" name="csrf" value="{{csrf}}" />
+					<div class="input-group">
+						<input type="text" class="form-control" name="amount" placeholder="collect" />
+					      <span class="input-group-btn">
+					        <button type="submit" class="btn btn-info"><i class="fa fa-money"></i></button>
+					      </span>
 					</div>
-					<button type="submit" class="btn btn-default"><i class="fa fa-money"></i></button>
 				</form>
 			</div>
 			You have {{earnings}} {{currency}} in your shop's till

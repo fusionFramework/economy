@@ -214,3 +214,30 @@ If you want to define the amount yourself you should call this
 If you need to access the item's image URL you can just call
 
 	$item->img();
+
+## Use of parameter and parameter_id
+
+As you might have seen in the database schema and this guide there are 2 similar columns; *parameter* and *parameter_id*, but what do they mean?
+
+They were added as an extra way for your user items to have an 'identity', while still having them in stacks,
+making it easy to remove, add, move or transfer them.
+
+### parameter_id
+
+parameter_id is used when items are linked to other database tables, if used it should contain an integer.
+
+For example in auctions:
+parameter_id describes which auction this item is linked to (don't forget that the item's location is set to auction as wel).
+
+For example in trades:
+parameter_id describes which trade it's linked to.
+
+This makes it easier to search auctions for a partcular item and not having a huge 'trade_lot' table which has X amount item_ids defined in it.
+
+### parameter
+
+This one is a little bit different, it can hold all kinds of values since it's a text field.
+
+You can store text or serialized arrays in it which the specific location wants to make use of, for example in the economy module it's used in the user shop to define the item's price.
+
+If you wrote a battle script you could store how many times it's been used before deleting it, or store when it was activated for a certain effect to take place.

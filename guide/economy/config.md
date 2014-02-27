@@ -1,5 +1,7 @@
 # Configuration
 
+Basic configuration can be done through the admin.
+
 ## Tasks
 
 *No tasks*

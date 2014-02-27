@@ -14,18 +14,17 @@ $(document).ready(function () {
 
 		if (default_command != '' && cmd.definitions[default_command].pets == 0 && cmd.definitions[command].pets == 1) {
 			//error, can't add a pet related command to an item that doesn't load the pet list
-			$('#item-notify').notify({
-				message:{ text:'You can\'t add command "' + command.replace('_', ' ') + '" because it requires pets.'},
-				type:'info',
-				fadeOut:{ enabled:true, delay:6000 }
-			}).show();
+            $.fn.req.defaultRequestHandlers.success([{
+                value: 'You can\'t add command "' + command.replace('_', ' ') + '" because it requires pets.',
+                type: 'info'
+            }]);
+
 		}
 		else if ($('#item-table-cmd > tbody').find('tr[data-cmd="' + command + '"]').length > 0 && cmd.definitions[command].multiple == 0) {
-			$('#item-notify').notify({
-				message:{ text:'You can\'t add command "' + command.replace('_', ' ') + '" more than once to an item.'},
-				type:'info',
-				fadeOut:{ enabled:true, delay:6000 }
-			}).show();
+            $.fn.req.defaultRequestHandlers.success([{
+                value: 'You can\'t add command "' + command.replace('_', ' ') + '" more than once to an item.',
+                type: 'info'
+            }]);
 		}
 		else {
 			var tpl = $('#item-commands-input > table').find('tr[data-cmd="' + command + '"]').clone(true);
@@ -105,9 +104,8 @@ $(document).ready(function () {
 	//load in any predefined commands
 	$('#modal-items').on('load', function (e, data) {
 		var first = true;
-		console.log(data);
+
 		$.each(data.commands, function (k, v) {
-			console.log(k+' - '+v);
 			var tpl = $('#item-commands-input > table').find('tr[data-cmd="' + k + '"]').clone(true);
 
 			if (first == true) {

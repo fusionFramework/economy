@@ -48,7 +48,7 @@ class Fusion_Controller_Stores extends Controller_Fusion_Site {
 			$this->access('store.closed');
 		}
 
-		Fusion::$assets->add_set('notifications');
+		Fusion::$assets->add_set('growl');
 		Fusion::$assets->add_set('modals');
 		Fusion::$assets->add_set('req');
 		Fusion::$assets->add_js('plugins/bootbox.min.js');

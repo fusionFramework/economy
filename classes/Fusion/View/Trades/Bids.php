@@ -33,12 +33,6 @@ class Fusion_View_Trades_Bids extends Views {
 	public $count = 0;
 
 	/**
-	 * Stores the navigation
-	 * @var array
-	 */
-	public $trade_nav = array();
-
-	/**
 	 * Return a simplified bid data definition.
 	 *
 	 * @return array
@@ -82,7 +76,7 @@ class Fusion_View_Trades_Bids extends Views {
 		if (count($bids) > 0)
 		{
 			foreach ($bids as $bid)
-				$list[] = $this->bid($bid);
+				$list[] = $this->_bid($bid);
 		}
 
 		return $list;

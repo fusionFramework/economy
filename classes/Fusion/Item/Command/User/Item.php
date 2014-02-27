@@ -40,7 +40,7 @@ class Fusion_Item_Command_User_Item extends Item_Command {
 			->where('item.name', '=', $param)
 			->find();
 
-		Item::factory($item)->to_user(Fusion::$user->id);
+		Item::factory($item)->to_user(Fusion::$user);
 
 		return Item_Result::factory('You\'ve received a' . $item->name);
 	}

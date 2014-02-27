@@ -1,19 +1,13 @@
-# Auth
+# Item commands
 
-User authentication and authorization is provided by the auth module.
+Commands are actions that are performed when consuming an item in the inventory.
 
-The auth module is included with Kohana, but needs to be enabled before you can use it. To enable, open your `application/bootstrap.php` file and modify the call to [Kohana::modules] by including the auth module like so:
+Any item can have one or more commands, the item's type (default_command) defines a command that every item of that type is forced
+to have, you always have the option of adding extra commands on any item you want.
 
-~~~
-Kohana::modules(array(
-	...
-	'auth' => MODPATH.'auth',
-	...
-));
-~~~
+This default command offers a restriction though, for example, if an item type's default command does not come
+from the pet category you won't be able to assign other pet-related commands to related items.
 
-Next, you will then need to [configure](config) the auth module.
+## Creating your own command
 
-The auth module provides the [Auth::File] driver for you. There is also an auth driver included with the ORM module.
 
-As your application needs change you may need to find another driver or [develop](driver/develop) your own.

@@ -27,11 +27,10 @@ $(document).ready(function () {
 		var type = $('#input-type').val();
 
 		if (typeof messages[type][def] == 'undefined') {
-			$('#item-notify').notify({
-				message:{ text:'You can\'t add message "' + def + '", since it does not exist.'},
-				type:'info',
-				fadeOut:{ enabled:true, delay:6000 }
-			}).show();
+            $.fn.req.defaultRequestHandlers.success([{
+                value: 'You can\'t add message "' + def + '", since it does not exist.',
+                type: 'info'
+            }]);
 		}
 		else {
 			//add the action to the row

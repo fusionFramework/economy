@@ -12,11 +12,6 @@ Plug::listen('admin.nav_list', function() {
 				'icon'  => 'fa fa-lemon-o',
 			),
 			array(
-				'title' => 'Item types',
-				'route' => 'admin.item.types.index',
-				'icon'  => 'fa fa-sort-desc',
-			),
-			array(
 				'title' => 'Stores',
 				'route' => 'admin.stores.index',
 				'icon'  => 'fa fa-shopping-cart',

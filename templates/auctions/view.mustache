@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="row text-center">
+			{{&menu}}
+		</div>
+        <div class="row">
+            <div class="col-lg-3 col-lg-offset-3">
+                <div class="row text-center">
+                    <img src="{{lot.item.img}}" /> <br />
+                    {{lot.item.name}}<br />
+                </div>
+                {{#has_bid}}
+                    <div class="row">
+                        {{total_bids}} bids were made previously <br />
+                        <strong>Last bid:</strong><br />
+                        {{bid.points}} {{currency}} by <a href="{{bid.user_profile}}">{{bid.username}}</a>
+                    </div>
+                {{/has_bid}}
+            </div>
+            <div class="col-lg-4">
+                Owner: <a href="{{lot.user_profile}}">{{lot.username}}</a> <br />
+                Starting bid: {{lot.start_bid}}<br />
+                Min. increment: {{lot.increment}}
+                {{#auto_buy}}
+                <br />Auto buy: {{lot.auto_buy}}
+                {{/auto_buy}}
+                {{#has_bid}}
+                <br /> Next bid: {{bid.next_bid}}
+                {{/has_bid}}
+                <br /> Open until: {{lot.until}}
+            </div>
+        </div>
+        {{#can_bid}}
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-2">
+                <form action="{{lot.bid_link}}" method="POST" class="form form-inline">
+                    <input type="hidden" name="csrf" value="{{csrf}}" />
+                    <div class="form-group">
+                        <input type="number" name="points" value="{{#has_bid}}{{bid.next_bid}}{{/has_bid}}{{^has_bid}}{{lot.start_bid}}{{/has_bid}}" class="form-control col-lg-1">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Make bid">
+                    </div>
+                </form>
+            </div>
+            {{#auto_buy}}
+            <div class="col-lg-2">
+                <form action="{{lot.bid_link}}" method="POST" class="form form-inline">
+                    <input type="hidden" name="csrf" value="{{csrf}}" />
+                    <input type="hidden" name="auto_buy" value="1" />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-warning" value="Auto buy">
+                    </div>
+                </form>
+            </div>
+            {{/auto_buy}}
+        </div>
+        {{/can_bid}}
+	</div>
+</div>
